@@ -126,9 +126,10 @@ static struct clkctl_acpu_speed *pvs_tables_8226[NUM_SPEED_BIN] = {
 	[6] = acpu_freq_tbl_8226_1p2,
 	[2] = acpu_freq_tbl_8226_1p4,
 	[5] = acpu_freq_tbl_8226_1p4,
-	[4] = acpu_freq_tbl_8226_1p4,
-	[7] = acpu_freq_tbl_8226_1p4,
+	[4] = acpu_freq_tbl_8226_1p5,
+	[7] = acpu_freq_tbl_8226_1p5,
 	[1] = acpu_freq_tbl_8226_1p6,
+
 };
 
 static struct acpuclk_drv_data drv_data = {

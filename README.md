@@ -1,1 +1,1 @@
-# kool-aid_kernel_lge_msm8226_g2m
+kernel_lge_msm8226_g2m

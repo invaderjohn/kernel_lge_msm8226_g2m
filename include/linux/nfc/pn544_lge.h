@@ -41,12 +41,20 @@
 
 #define PN544_MAGIC	0xE9
 
-
-#ifdef CONFIG_LGE_NFC_PN547
-#define PN544_DRV_NAME      "pn547"    //garam for pn547
+/* LGE_START seunghyun.kwak@lge.com 2013-10-15 NFC Bringup for B2*/
+#ifdef CONFIG_LGE_NFC_PN547	
+#define PN544_DRV_NAME      "pn547"    
 #else
-#define PN544_DRV_NAME      "pn544"    //garam for pn547
+#define PN544_DRV_NAME      "pn544"    
 #endif
+/* LGE_END seunghyun.kwak@lge.com 2013-10-15 NFC Bringup for B2*/
+
+//#define NFC_GPIO_VEN	47		// byunggu       
+//#define NFC_GPIO_IRQ	59    	// byunggu       
+//#define NFC_GPIO_FIRM	48    	// byunggu       
+//#define NFC_I2C_SLAVE_ADDR 	0x28    // byunggu       
+
+
 
 /*
  * PN544 power control via ioctl
@@ -75,6 +83,9 @@ struct pn544_dev	{
 	unsigned int 		ven_gpio;
 	unsigned int 		firm_gpio;
 	unsigned int		irq_gpio;
+	// LGE_START byunggu.kang@lge.com 2014-02-21 Change IRQ Trigger Condition as Rising Edge
+	unsigned int 		count_irq;
+	// LGE_END byunggu.kang@lge.com 2014-02-21 Change IRQ Trigger Condition as Rising Edge
 	bool			irq_enabled;
 	spinlock_t		irq_enabled_lock;
 };
@@ -93,9 +104,10 @@ struct pn544_gpio {
 #define PN544_INTERRUPT_CMD	2
 #define PN544_READ_POLLING_CMD 3
 
-
+#if defined(CONFIG_LGE_NFC_DEBUG_MESSAGE)
 #define dprintk(fmt, args...) printk(fmt, ##args)
+#else
+#define dprintk(fmt, args...) do{ } while(0)
+#endif
 
-
-#endif /*               */
-
+#endif /* _PN544_LGE_H_ */
